@@ -1,0 +1,17 @@
+<nav class="navbar navbar-light" style="background-color: #1b9859;">
+    <a class="navbar-brand text-white">Buy Moto - Be Happy!</a>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <button class="btn btn-outline-light my-2 my-sm-0" (click)="onCreateMotocycle()">Add Motocycle</button>
+      </li>
+    </ul>
+    <button class="btn btn-outline-light my-2 my-sm-0" (click)="onLogout()">Logout</button> 
+  </nav>
+
+  <div class="card m-5" style="width:18rem" *ngIf="userDetails">
+  <ul class="list-group">
+    <li class="list-group-item"><strong>Username:</strong></li>   
+    <li class="list-group-item"><strong>Fullname:</strong></li>   
+    <li class="list-group-item"><strong>Email:</strong></li>   
+  </ul>
+  </div>
