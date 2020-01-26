@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import {HttpClient, HttpHandler, HttpHeaders} from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { UserProfile } from '../user-profile/user-profile';
 
 @Injectable({
   providedIn: 'root'
@@ -47,9 +49,9 @@ readonly BaseURI='https://localhost:44372/api';
     return  this.http.post(this.BaseURI+'/account/Login',formData);
   }
 
-  getUserProfile()
+  getUserProfile():Observable<UserProfile>
   {
-    return this.http.get(this.BaseURI+'/account/UserProfile');
+    return this.http.get<UserProfile>(this.BaseURI+'/account/UserProfile');
   } 
 
   roleMatch(allowedRoles): boolean {

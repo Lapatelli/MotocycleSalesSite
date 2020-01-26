@@ -87,7 +87,7 @@ div.form-group.required>label:first-child:after{
   }
 
  div.form-group input.invalid{
-    border: 1px solid #dc3545; 
+    border: 1px solid #ffb20b; 
  }
  div.form-group label:first-child{
     text-transform: uppercase;

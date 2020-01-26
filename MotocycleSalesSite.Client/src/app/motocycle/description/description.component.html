@@ -5,15 +5,6 @@
         <button class="btn btn-light my-2 my-sm-0" (click)="onCreateMotocycle()">Add Motocycle</button>
       </li>
     </ul>
-    <div [hidden]="isAuthenticated">
-      <button class="btn btn-outline-light my-2 my-sm-0" (click)="onLogin()">Login</button>
-  </div>
-  <div [hidden]="!isAuthenticated">
-      <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button> 
-  </div>
-  </nav>
-
-
-  <app-list></app-list>
-
-  
+    <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button> 
+</nav>
+<h1>Works!</h1>   

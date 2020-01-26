@@ -11,6 +11,15 @@ namespace AppForTrainee.Controllers
     [Route("api/motocycle")]
     public class MotocycleController : ControllerBase
     {
+        private readonly UserDbContext _db;
+        //private readonly SignInManager<User> _signInManager;        
+
+        public MotocycleController(UserDbContext db)
+        {
+            _db = db;
+            //_signInManager = signInManager;
+        }
+
         [HttpGet("MotoList")]
         [Authorize(Roles = "Admin")]
         public IActionResult GetMotoList()
@@ -73,9 +82,8 @@ namespace AppForTrainee.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Ok(MotocycleStore.Data.Select(x => new
+            return Ok(_db.Motocycles.Select(x => new
             {
-                Id = x.Id,
                 Name = x.Name,
                 Year = x.Year,
                 Volume = x.Volume,

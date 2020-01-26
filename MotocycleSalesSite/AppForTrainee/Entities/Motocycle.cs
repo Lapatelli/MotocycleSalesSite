@@ -24,7 +24,7 @@ namespace AppForTrainee.Entities
         [Range(100, 2000)]
         public int Volume { get; set; }
 
-        public decimal Cost { get; set; }
+        public int Cost { get; set; }
 
         public MotocycleType Type { get; set; }
     }
