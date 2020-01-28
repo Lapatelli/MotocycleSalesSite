@@ -13,7 +13,6 @@ import { ToastrService } from 'ngx-toastr';
 export class AdminComponent implements OnInit {
   motoCycle:Motocycles;
   motolist$:Observable<Motocycles[]>;
-  refreshlist$:Observable<Motocycles[]>;
   deleteMotoItem$:Observable<object>;
   editMotoADvert$:Observable<object>;
   MotoCycleId:number=0;
@@ -45,7 +44,10 @@ export class AdminComponent implements OnInit {
     
     onDeleteMotoAdvert(id){
       this.service.deleteMotoitem(id).subscribe(res=>{
+        console.log('delete');
         this.toastr.error('Advertisement deleted successfully!','Delete Moto Advert');
+        this.motolist$=this.service.getMotocyclesList();
+
       },err=>{
         console.log(err);
       });
@@ -56,6 +58,7 @@ export class AdminComponent implements OnInit {
         (res:any)=>{
           this.toastr.warning('Advertisement edited successfully!','Edit Moto Advert');
           this.motolist$=this.service.getMotocyclesList();
+          this.service.formModel.reset();
           });
     }
 
