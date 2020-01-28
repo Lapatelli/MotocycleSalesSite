@@ -1,14 +1,18 @@
 export class Motocycles{
 
+    Id:number;
     Name:string;
+    Description:string;
     Year:number;
     Volume:number;
     Cost:number;
-    Type:string;
+    Type:number;
   
-    constructor(Name:string,Year:number, Volume:number, Cost:number, Type:string) //Name:string,Year:string, Volume:string, Cost:string, Type:string
+    constructor(Id:number,Name:string,Description:string,Year:number, Volume:number, Cost:number, Type:number) 
     {
+      this.Id=Id;
       this.Name=Name;
+      this.Description=Description
       this.Year=Year;
       this.Volume=Volume;
       this.Cost=Cost;

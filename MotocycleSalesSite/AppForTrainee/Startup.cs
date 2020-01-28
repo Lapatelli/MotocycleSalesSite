@@ -37,6 +37,8 @@ namespace AppForTrainee
             services.AddDbContext<UserDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+
+
             services.AddIdentityCore<User>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<UserDbContext>();

@@ -18,14 +18,14 @@ formModel={
 
   ngOnInit() {
     if(localStorage.getItem('token')!=null)
-    this.router.navigateByUrl('/user-profile'); //if will be more pages, need smth to add???
+    this.router.navigateByUrl('/home'); //if will be more pages, need smth to add???
   }
 
   onSubmit( form:NgForm){
 this.service.login(form.value).subscribe(
   (res:any)=>{
     localStorage.setItem('token',res.token);
-    this.router.navigateByUrl('/user-profile');
+    this.router.navigateByUrl('/home');
   },
   err=>{
     if(err.status==400)

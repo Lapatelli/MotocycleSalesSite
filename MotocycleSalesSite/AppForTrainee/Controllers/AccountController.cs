@@ -40,8 +40,8 @@ namespace AppForTrainee.Controllers
 
             try
             {
-                var result = await _userManager.CreateAsync(user, model.Password);
-                await _userManager.AddToRoleAsync(user, model.Role);
+                var result = await _userManager.CreateAsync(user, model.Password).ConfigureAwait(false);
+                await _userManager.AddToRoleAsync(user, model.Role).ConfigureAwait(false);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -53,12 +53,12 @@ namespace AppForTrainee.Controllers
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody]UserLoginModel model)
         {
-            var user = await _userManager.FindByNameAsync(model.UserName);
+            var user = await _userManager.FindByNameAsync(model.UserName).ConfigureAwait(false);
 
-            if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
+            if (user != null && await _userManager.CheckPasswordAsync(user, model.Password).ConfigureAwait(false))
             {
                 //Role for assigned user
-                var role = await _userManager.GetRolesAsync(user);
+                var role = await _userManager.GetRolesAsync(user).ConfigureAwait(false);
 
                 var claims = new List<Claim>
                 {
@@ -92,7 +92,7 @@ namespace AppForTrainee.Controllers
         public async Task<IActionResult> GetUserProfile()
         {
             string userId = User.Claims.FirstOrDefault(c => c.Type == "UserID").Value;
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = await _userManager.FindByIdAsync(userId).ConfigureAwait(false);
 
             return Ok(new { user.FullName, user.Email, user.UserName });
         }

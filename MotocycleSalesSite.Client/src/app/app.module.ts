@@ -19,6 +19,8 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { MotocycleComponent } from './motocycle/motocycle.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DescriptionComponent } from './motocycle/description/description.component';
+import { AdminComponent } from './admin/admin.component';
+import { AddmotoComponent } from './admin/addmoto/addmoto.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { DescriptionComponent } from './motocycle/description/description.compon
     ForbiddenComponent,
     MotocycleComponent,
     UserProfileComponent,
-    DescriptionComponent
+    DescriptionComponent,
+    AdminComponent,
+    AddmotoComponent
   ],
   imports: [
     BrowserModule,

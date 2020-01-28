@@ -1,6 +1,8 @@
 ﻿using AppForTrainee.Entities;
+using AppForTrainee.Entities.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,65 +14,69 @@ namespace AppForTrainee.Controllers
     public class MotocycleController : ControllerBase
     {
         private readonly UserDbContext _db;
-        //private readonly SignInManager<User> _signInManager;        
+
 
         public MotocycleController(UserDbContext db)
         {
             _db = db;
-            //_signInManager = signInManager;
         }
 
-        [HttpGet("MotoList")]
-        [Authorize(Roles = "Admin")]
-        public IActionResult GetMotoList()
-        {
-            return Ok();
-        }
-
-        //public IActionResult Create(Motocycle motocycle)
+        //[HttpGet("MotoList")]
+        //[Authorize(Roles = "Admin")]
+        //public IActionResult GetMotoList()
         //{
-        //    motocycle.Id = MotocycleStore.Data.Count + 1;
-        //    MotocycleStore.Data.Add(motocycle);
-        //    return Ok(motocycle);
+        //    return Ok();
         //}
 
-        [Authorize(Roles = "admin")]
-        [HttpPut]
-        public IActionResult Update(Motocycle motocycle)
+        [HttpPost("Create")]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Create([FromBody]Motocycle motocycle)
         {
-            var existsModel = MotocycleStore.Data.FirstOrDefault(x => x.Id == motocycle.Id);
-
-            if (existsModel == null)
-            {
-                return NotFound(new { errorText = $"Motocycle with id {motocycle.Id} not found" });
-            }
-
-            MotocycleStore.Data.Remove(existsModel);
-            MotocycleStore.Data.Add(motocycle);
+            _db.Motocycles.Add(motocycle);
+            _db.SaveChanges();
 
             return Ok(motocycle);
         }
 
-        [Authorize(Roles = "admin")]
-        [HttpDelete]
-        public IActionResult Delete(int id)
+        [Authorize(Roles = "Admin")]
+        [HttpPut("{id}")]
+        public IActionResult Update(int id,[FromBody]Motocycle motocycle)
         {
-            var existsModel = MotocycleStore.Data.FirstOrDefault(x => x.Id == id);
+            var existsModel = _db.Motocycles.FirstOrDefault(x => x.Id == id);
 
             if (existsModel == null)
             {
                 return NotFound(new { errorText = $"Motocycle with id {id} not found" });
             }
 
-            MotocycleStore.Data.Remove(existsModel);
+            _db.Remove(existsModel);
+            _db.Add(motocycle);
+            _db.SaveChanges();
+
+            return Ok(motocycle);
+        }
+
+        //[Authorize(Roles = "Admin")]
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var existsModel = _db.Motocycles.FirstOrDefault(x => x.Id == id);
+
+            if (existsModel == null)
+            {
+                return NotFound(new { errorText = $"Motocycle with id {id} not found" });
+            }
+
+            _db.Motocycles.Remove(existsModel);
+            _db.SaveChanges();
             return Ok();
         }
 
         [Authorize]
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public IActionResult GetById(int id) //async toDo
         {
-            var existsModel = MotocycleStore.Data.FirstOrDefault(x => x.Id == id);
+            var existsModel = _db.Motocycles.FirstOrDefault(x => x.Id == id);
             if (existsModel == null)
             {
                 return NotFound(new { errorText = $"Motocycle with id {id} not found" });
@@ -80,14 +86,16 @@ namespace AppForTrainee.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetAll() //async toDo
         {
+
             return Ok(_db.Motocycles.Select(x => new
             {
-                Name = x.Name,
-                Year = x.Year,
-                Volume = x.Volume,
-                Cost = x.Cost,
+                x.Id,
+                x.Name,
+                x.Year,
+                x.Volume,
+                x.Cost,
                 Type = x.Type.ToString()
             }));
         }

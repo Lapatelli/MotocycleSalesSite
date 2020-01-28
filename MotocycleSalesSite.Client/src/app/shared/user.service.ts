@@ -42,6 +42,7 @@ readonly BaseURI='https://localhost:44372/api';
       FullName: this.formModel.value.FullName,
       Password: this.formModel.value.Passwords.Password,
       };
+      console.log(body);
   return  this.http.post(this.BaseURI+'/account/Register',body);
   }
 

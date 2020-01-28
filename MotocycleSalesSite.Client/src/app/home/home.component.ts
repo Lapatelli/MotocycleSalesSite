@@ -19,10 +19,6 @@ isAuthenticated:boolean;
     return this.isAuthenticated=false;
   }
 
-onCreateMotocycle(){
-this.router.navigate(['/motocycle/adding']); //logic for Guard auth!
-}
- 
 
 onLogin(){
 localStorage.removeItem('token');
@@ -34,6 +30,11 @@ onLogout(){
   this.isAuthenticated=false;
   this.router.navigate(['/home']); 
   }
+
+  onProfileUser(){
+    this.router.navigate(['/user-profile']); 
+  }  
 }
+
 
 

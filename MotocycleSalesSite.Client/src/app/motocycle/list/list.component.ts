@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { MotocycleService } from 'src/app/shared/motocycle.service';
 import{Motocycles} from '../motocycle';
-import { parse } from 'querystring';
 import { Observable } from 'rxjs';
+import { EventEmitter } from '@angular/core';
 
 
 @Component({
@@ -13,12 +13,14 @@ import { Observable } from 'rxjs';
 })
 export class ListComponent implements OnInit {
   motoCycle:Motocycles;
-  motolist$:Observable<Motocycles[]>
+  motolist$:Observable<Motocycles[]>;
+  @Output() onMotoCycleToDescribe=new EventEmitter<Motocycles>();
   
   constructor(private router:Router, private service:MotocycleService) {}
 
   ngOnInit() {
     this.motolist$=this.service.getMotocyclesList();
+    
       // res=>{
       //   this.listMotocycles=res;
 
@@ -32,9 +34,11 @@ export class ListComponent implements OnInit {
     //   }
     // );
   }
-
-  onOpenDescription(){
-    this.router.navigate(['/motocycle/description']);
+  
+  onDescribe(id)
+  {
+    this.onMotoCycleToDescribe.emit(id);
+    // console.log(motocycle);
   }
 }
 

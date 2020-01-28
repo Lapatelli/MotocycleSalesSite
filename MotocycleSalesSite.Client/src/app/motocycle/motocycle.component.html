@@ -1,1 +1,4 @@
-<router-outlet></router-outlet>
+<app-list (onMotoCycleToDescribe)="onMotoCycleToDescribe($event)"></app-list>
+<!-- *ngIf="show" -->
+<app-description routerLink='/motocycle/description' routerLinkActive='active' [motoDescription$]="motoCycleForDescribe$"></app-description>
+

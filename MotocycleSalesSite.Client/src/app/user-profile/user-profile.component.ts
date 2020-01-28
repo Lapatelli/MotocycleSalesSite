@@ -13,25 +13,25 @@ export class UserProfileComponent implements OnInit {
   //userDetails;
   userDetails$:Observable<UserProfile>;
   userprofile;
+  isAdminAuthenticated:boolean;
 
 
-  constructor(private router:Router, private service:UserService) { }
+  constructor(private router:Router, private service:UserService) {
+   }
 
   ngOnInit() {
     this.userDetails$=this.service.getUserProfile();
     console.log(this.userDetails$);
-    this.userprofile=this.userDetails$;     
-      //   console.log(res);
-      //   this.userDetails=res;
-        
-      // },
-      // err=>{
-      //   console.log(err);
-      // });
+    this.userprofile=this.userDetails$;
+    
+    if(this.service.roleMatch(['Admin'])) return this.isAdminAuthenticated=true;
+    else{
+      return this.isAdminAuthenticated=false;
+    }
 }
 
-onCreateMotocycle(){
-this.router.navigate(['/motocycle/adding']);
+onGotoAdminPanel(){
+this.router.navigateByUrl('/admin');
 }
   
 onLogout(){

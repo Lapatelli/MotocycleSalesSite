@@ -2,7 +2,7 @@
 
 namespace AppForTrainee.Migrations
 {
-    public partial class AddMotocyclesToDB : Migration
+    public partial class ThirdMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -10,7 +10,8 @@ namespace AppForTrainee.Migrations
                 name: "Motocycles",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                    .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     Year = table.Column<int>(nullable: false),

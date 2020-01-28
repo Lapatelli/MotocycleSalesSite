@@ -11,6 +11,8 @@ import { ListComponent } from './motocycle/list/list.component';
 import { AddingComponent } from './motocycle/adding/adding.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DescriptionComponent } from './motocycle/description/description.component';
+import {AdminComponent} from './admin/admin.component';
+import {AddmotoComponent} from './admin/addmoto/addmoto.component';
 
 
 const routes: Routes = [
@@ -27,10 +29,12 @@ children: [
 children:[
   {path: 'adding',component:AddingComponent, canActivate:[AuthGuard],data: {permittedRoles:['Admin']}},
   {path: 'list',component:ListComponent},
-  {path: 'description',component:DescriptionComponent,canActivate:[AuthGuard],data:{permittedRoles:['User','Admin']}}
+  {path: 'description',component:DescriptionComponent, canActivate:[AuthGuard],data:{permittedRoles:['User','Admin']}}
   ]
 },
-{path:'forbidden',component:ForbiddenComponent}
+{path:'forbidden',component:ForbiddenComponent},
+{path:'admin',component:AdminComponent, canActivate:[AuthGuard],data: {permittedRoles:['Admin']}},
+{path: 'addmoto',component:AddmotoComponent, canActivate:[AuthGuard],data: {permittedRoles:['Admin']}}
 ];
 
 @NgModule({
