@@ -25,6 +25,6 @@ namespace AppForTrainee.Entities
 
         public int Cost { get; set; }
 
-        public int Type { get; set; }
+        public MotocycleType Type { get; set; }
     }
 }

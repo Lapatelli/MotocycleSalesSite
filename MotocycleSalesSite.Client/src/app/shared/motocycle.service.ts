@@ -49,13 +49,13 @@ formModel=this.fb.group({
     return this.http.get<Motocycles>(this.BaseURI+'/motocycle/'+id);
   }
 
-  deleteMotoitem(id:number)
+  deleteMotoitem(id:number):Observable<any>
   {
     console.log(id);
-    return  this.http.delete(this.BaseURI+'/motocycle/'+id);
+    return  this.http.delete(this.BaseURI+'/motocycle/'+id,{responseType:'text'});
   }
 
-  editMotoitem(id):Observable<object>
+  editMotoitem(id):Observable<Object>
   {
     var body={
       Id:this.formModel.value.Id,
@@ -67,7 +67,7 @@ formModel=this.fb.group({
       Type: this.formModel.value.Type,
       };
 
-    return this.http.put<object>(this.BaseURI + '/motocycle/'+ id, body);
+    return this.http.put(this.BaseURI + '/motocycle/'+ id, body);
   }
 
   // refreshList(){

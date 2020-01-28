@@ -77,11 +77,22 @@ namespace AppForTrainee.Controllers
         public IActionResult GetById(int id) //async toDo
         {
             var existsModel = _db.Motocycles.FirstOrDefault(x => x.Id == id);
+            var result = new
+            {
+                existsModel.Id,
+                existsModel.Name,
+                existsModel.Description,
+                existsModel.Year,
+                existsModel.Volume,
+                existsModel.Cost,
+                Type=existsModel.Type.ToString()
+            };
+
             if (existsModel == null)
             {
                 return NotFound(new { errorText = $"Motocycle with id {id} not found" });
             }
-            return Ok(existsModel);
+            return Ok(result);
         }
 
         [AllowAnonymous]
