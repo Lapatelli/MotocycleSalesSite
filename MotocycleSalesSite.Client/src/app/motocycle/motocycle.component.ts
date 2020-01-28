@@ -11,18 +11,18 @@ import { Observable } from 'rxjs';
 })
 export class MotocycleComponent implements OnInit {
 
-  motoCycleForDescribe$:Observable<Motocycles>;
-  show:boolean=true;
+  // motoCycleForDescribe$:Observable<Motocycles>;
+  // show:boolean=true;
 
   constructor(private router:Router, private service:MotocycleService) { }
 
   ngOnInit() {
   }
 
-  onMotoCycleToDescribe(id){
-    console.log(id);
-    this.motoCycleForDescribe$=this.service.getMotocycleDescription(id);
-    this.show=false;
-  }
+  // onMotoCycleToDescribe(id){
+  //   console.log(id);
+  //   this.motoCycleForDescribe$=this.service.getMotocycleDescription(id);
+  //   this.show=false;
+  // }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import {MotocycleService} from 'src/app/shared/motocycle.service';
 import { Motocycles } from '../motocycle';
 import { Observable } from 'rxjs';
@@ -11,15 +11,21 @@ import { Observable } from 'rxjs';
 })
 export class DescriptionComponent implements OnInit {
 
+id:number;
+motoCycleForDescribe$:Observable<Motocycles>;
+// @Input()
+// motoDescription$: Observable<Motocycles>;
 
-@Input()
-motoDescription$: Observable<Motocycles>;
-
-  constructor(private router:Router, private service:MotocycleService) { }
+  constructor(private router:Router, private service:MotocycleService, private activateRoute: ActivatedRoute) {
+    this.id = activateRoute.snapshot.params['id'];
+    console.log(this.id);
+   }
 
   ngOnInit() {
-  }
+    this.motoCycleForDescribe$=this.service.getMotocycleDescription(this.id);
+    console.log('go');
 
+  }
 
   onLogout(){
     localStorage.removeItem('token');

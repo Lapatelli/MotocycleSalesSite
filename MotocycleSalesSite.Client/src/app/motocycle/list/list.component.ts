@@ -14,7 +14,7 @@ import { EventEmitter } from '@angular/core';
 export class ListComponent implements OnInit {
   motoCycle:Motocycles;
   motolist$:Observable<Motocycles[]>;
-  @Output() onMotoCycleToDescribe=new EventEmitter<Motocycles>();
+  // @Output() onMotoCycleToDescribe=new EventEmitter<Motocycles>();
   
   constructor(private router:Router, private service:MotocycleService) {}
 
@@ -37,7 +37,9 @@ export class ListComponent implements OnInit {
   
   onDescribe(id)
   {
-    this.onMotoCycleToDescribe.emit(id);
+    this.router.navigateByUrl('/motocycle/description/'+id);
+    console.log(id);
+    // this.onMotoCycleToDescribe.emit(id);
     // console.log(motocycle);
   }
 }

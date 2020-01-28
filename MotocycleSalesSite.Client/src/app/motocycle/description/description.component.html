@@ -1,8 +1,12 @@
-<div class="card m-5" style="width:80rem" *ngIf="motoDescription$ | async as motoDescription">
+<div class="card m-5" style="width:80rem" *ngIf="motoCycleForDescribe$ | async as motoCycleForDescribe">
+  <!-- *ngIf="motoDescription$ | async as motoDescription" -->
   <ul class="list-group">
-    <li class="list-group-item"><strong>Name: </strong>{{motoDescription.name}} </li>   
-    <li class="list-group-item"><strong>Description: </strong>{{motoDescription.description}} </li>   
-    <li class="list-group-item"><strong>Cost: </strong>{{motoDescription.cost}} </li>   
+    <li class="list-group-item"><strong>Name: </strong>{{motoCycleForDescribe.name}} </li>   
+    <li class="list-group-item"><strong>Description: </strong>{{motoCycleForDescribe.description}} </li>   
+    <li class="list-group-item"><strong>Year: </strong>{{motoCycleForDescribe.year}} </li>
+    <li class="list-group-item"><strong>Volume: </strong>{{motoCycleForDescribe.volume}} </li> 
+    <li class="list-group-item"><strong>Type: </strong>{{motoCycleForDescribe.type}} </li> 
+    <li class="list-group-item"><strong>Cost: </strong>{{motoCycleForDescribe.cost}} </li>    
   </ul> 
   </div>
    
