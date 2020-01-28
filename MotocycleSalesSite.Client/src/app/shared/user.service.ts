@@ -59,7 +59,6 @@ readonly BaseURI='https://localhost:44372/api';
     var isMatch = false;
     var payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
     var userRole = payLoad.role;
-    console.log(payLoad.role); //log for searching Role
     allowedRoles.forEach(element => {
       if (userRole == element) {
         isMatch = true;

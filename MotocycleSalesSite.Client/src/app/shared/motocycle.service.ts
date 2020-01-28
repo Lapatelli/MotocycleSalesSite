@@ -8,6 +8,8 @@ import { Motocycles } from '../motocycle/motocycle';
   providedIn: 'root'
 })
 export class MotocycleService {
+MotocycleList:Motocycles[];
+
 
   constructor(private fb:FormBuilder,private http:HttpClient) { }
 readonly BaseURI='https://localhost:44372/api';
@@ -53,7 +55,7 @@ formModel=this.fb.group({
     return  this.http.delete(this.BaseURI+'/motocycle/'+id);
   }
 
-  editMotoitem(id):Observable<Motocycles>
+  editMotoitem(id):Observable<object>
   {
     var body={
       Id:this.formModel.value.Id,
@@ -64,8 +66,13 @@ formModel=this.fb.group({
       Cost: this.formModel.value.Cost,
       Type: this.formModel.value.Type,
       };
-      console.log(id);
-      console.log(body);
-    return this.http.put<Motocycles>(this.BaseURI + '/motocycle/'+ id, body);
+
+    return this.http.put<object>(this.BaseURI + '/motocycle/'+ id, body);
   }
+
+  // refreshList(){
+  //   this.http.get(this.BaseURI+'/motocycle')
+  //   .toPromise()
+  //   .then(res => this.MotocycleList = res as Motocycles[]);      
+  // }
 }

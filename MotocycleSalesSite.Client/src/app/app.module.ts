@@ -13,7 +13,6 @@ import { MotocycleService } from './shared/motocycle.service';
 import { LoginComponent } from './user/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
-import { AddingComponent } from './motocycle/adding/adding.component';
 import { ListComponent } from './motocycle/list/list.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { MotocycleComponent } from './motocycle/motocycle.component';
@@ -29,7 +28,6 @@ import { AddmotoComponent } from './admin/addmoto/addmoto.component';
     RegistrationComponent,
     LoginComponent,
     HomeComponent,
-    AddingComponent,
     ListComponent,
     ForbiddenComponent,
     MotocycleComponent,

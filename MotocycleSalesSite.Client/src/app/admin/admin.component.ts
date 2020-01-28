@@ -13,13 +13,14 @@ import { ToastrService } from 'ngx-toastr';
 export class AdminComponent implements OnInit {
   motoCycle:Motocycles;
   motolist$:Observable<Motocycles[]>;
+  refreshlist$:Observable<Motocycles[]>;
   deleteMotoItem$:Observable<object>;
-  MotoCycleId:number;
+  editMotoADvert$:Observable<object>;
+  MotoCycleId:number=0;
   show:boolean=false;
   
   constructor(private router:Router, private service:MotocycleService, private toastr:ToastrService) { }
 
-  editMotoADvert$:Observable<Motocycles>;
 
   ngOnInit() {  
     this.motolist$=this.service.getMotocyclesList();
@@ -33,7 +34,7 @@ export class AdminComponent implements OnInit {
     onEditMotoAdvert(id)
     {
       this.MotoCycleId=id;
-      // console.log(this.MotoCycleId);
+      console.log(this.MotoCycleId);
       if(this.show==false){
         this.show=true;
       }
@@ -44,31 +45,18 @@ export class AdminComponent implements OnInit {
     
     onDeleteMotoAdvert(id){
       this.service.deleteMotoitem(id).subscribe(res=>{
-        this.service.getMotocyclesList();
         this.toastr.error('Advertisement deleted successfully!','Delete Moto Advert');
-
       },err=>{
         console.log(err);
-      })
+      });
     }
 
     onUpdate(id){
-      console.log(id);
-      // this.editMotoADvert$=this.service.editMotoitem(id);
       this.service.editMotoitem(id).subscribe(
         (res:any)=>{
-          if(res.succeeded){
-            this.service.formModel.reset();
-            console.log('ok');
-          }
-          else{
-                  //Registration is failed                        
-          }
-        },
-        err=>{
-          console.log(err);
-        }
-      );
+          this.toastr.warning('Advertisement edited successfully!','Edit Moto Advert');
+          this.motolist$=this.service.getMotocyclesList();
+          });
     }
 
     onGotoAdminPanel(){

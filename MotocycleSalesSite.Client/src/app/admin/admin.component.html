@@ -37,7 +37,7 @@
             <td><button type="button" class="btn btn-warning" (click)="onEditMotoAdvert(motoCycle.id)">Edit</button></td>
             <td><button type="button" class="btn btn-danger" (click)="onDeleteMotoAdvert(motoCycle.id)">Delete</button></td>
         </tr>
-        <tr [formGroup]="service.formModel" autocomplete="off" *ngIf="show">
+        <tr [formGroup]="service.formModel" autocomplete="off" *ngIf="show && MotoCycleId===motoCycle.id">
           <td>
           <div class="form">
           <input type="number" class="form-control" formControlName="Id">
