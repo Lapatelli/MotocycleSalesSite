@@ -1,0 +1,77 @@
+<nav class="navbar navbar-light" style="background-color: #5c5c8a;">
+    <a class="navbar-brand mb-0 h1 text-white" href="#">mS</a>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <button class="btn btn-outline-light" (click)="onGotoAdminPanel()">Admin Panel</button>
+      </li>
+    </ul>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <button class="btn btn-outline-light" (click)="onCreateMotocycle()">Create Adv</button>
+      </li>
+    </ul>
+    <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button> 
+  </nav>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Year</th>
+        <th scope="col">Volume</th>
+        <th scope="col">Cost</th>
+        <th scope="col">Type</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let motoCycle of motolist$ | async">
+        <tr>
+            <td>{{motoCycle.id}}</td>
+            <td>{{motoCycle.name}}</td>
+            <td>{{motoCycle.year}}</td>
+            <td>{{motoCycle.volume}}</td>
+            <td>{{motoCycle.cost}}</td>
+            <td>{{motoCycle.type}}</td>
+            <td><button type="button" class="btn btn-warning" (click)="onEditMotoAdvert(motoCycle.id)">Edit</button></td>
+            <td><button type="button" class="btn btn-danger" (click)="onDeleteMotoAdvert(motoCycle.id)">Delete</button></td>
+        </tr>
+        <tr [formGroup]="service.formModel" autocomplete="off" *ngIf="show">
+          <td>
+          <div class="form">
+          <input type="number" class="form-control" formControlName="Id">
+          </div>
+        </td>
+        <td>
+          <div class="form">
+          <input type="text" class="form-control" formControlName="Name">
+          </div>
+        </td>
+        <td>
+          <div class="form">
+          <input type="number" class="form-control" formControlName="Year">
+          </div>
+        </td>
+        <td>
+          <div class="form">
+          <input type="number" class="form-control" formControlName="Volume">
+          </div>
+        </td>
+        <td>
+          <div class="form">
+          <input type="number" class="form-control" formControlName="Cost">
+          </div>
+        </td>
+        <td>
+          <div class="form">
+          <input type="number" class="form-control" formControlName="Type">
+          </div>
+        </td>
+        <td>
+          <button class="btn btn-success" (click)="onUpdate(motoCycle.id)">Submit</button>
+        </td>
+        </tr>
+    </tbody>
+</table>
+

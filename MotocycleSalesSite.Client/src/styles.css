@@ -1,12 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 body{
-    background-color: #e6fff9;;
+    background-color:	#d8d9db;;
 }
 
 input.form-control,input.form-control:focus{
-    background-color: #66cc99;
+    background-color: #5c5c8a;
     color: #fff;
-    border: 1px solid #66cc99;
+    border: 1px solid #5c5c8a;
 
 }
 
@@ -16,8 +16,9 @@ input.form-control:focus{
 
 button[type=submit].btn{
     border-radius: 20px;
-    background-color: #e6fff9;
-    color: #006622;
+    border-color: #5c5c8a;
+    background-color: #fff;
+    color: #5c5c8a;
 }
 
 div.form-group label:not(.text-danger){
@@ -47,7 +48,7 @@ div.form-group.required>label:first-child:after{
   .wrapped-div {
     -webkit-border-radius: 10px 10px 10px 10px;
     border-radius: 10px 10px 10px 10px;
-    background: #1b9859;
+    background: #b3b3cc;
     padding: 30px;
     width: 90%;
     max-width: 450px;
@@ -74,8 +75,8 @@ div.form-group.required>label:first-child:after{
     display:inline-block;
     padding: 30px 40px 10px 40px;
     cursor: pointer;
-    color: #083b19;
-    border-bottom: 2px solid #083b19;
+    color: #33334d;
+    border-bottom: 2px solid #33334d;
   }
 
   .tab-header h2:focus {
@@ -87,7 +88,7 @@ div.form-group.required>label:first-child:after{
   }
 
  div.form-group input.invalid{
-    border: 1px solid #dc3545; 
+    border: 1px solid #ffb20b; 
  }
  div.form-group label:first-child{
     text-transform: uppercase;

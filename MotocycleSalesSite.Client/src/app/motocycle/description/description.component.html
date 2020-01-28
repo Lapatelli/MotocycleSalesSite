@@ -1,0 +1,8 @@
+<div class="card m-5" style="width:80rem" *ngIf="motoDescription$ | async as motoDescription">
+  <ul class="list-group">
+    <li class="list-group-item"><strong>Name: </strong>{{motoDescription.name}} </li>   
+    <li class="list-group-item"><strong>Description: </strong>{{motoDescription.description}} </li>   
+    <li class="list-group-item"><strong>Cost: </strong>{{motoDescription.cost}} </li>   
+  </ul> 
+  </div>
+   

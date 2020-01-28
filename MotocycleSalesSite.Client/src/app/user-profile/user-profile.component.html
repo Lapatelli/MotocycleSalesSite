@@ -1,17 +1,17 @@
-<nav class="navbar navbar-light" style="background-color: #1b9859;">
-    <a class="navbar-brand text-white">Buy Moto - Be Happy!</a>
-    <ul class="navbar-nav mr-auto">
+<nav class="navbar navbar-light" style="background-color: #5c5c8a;">
+    <a class="navbar-brand mb-0 h1 text-white" href="#">mS</a>
+    <ul class="navbar-nav mr-auto" [hidden]="!isAdminAuthenticated">
       <li class="nav-item">
-        <button class="btn btn btn-light my-2 my-sm-0" (click)="onCreateMotocycle()">Add Motocycle</button>
+        <button class="btn btn-outline-light" (click)="onGotoAdminPanel()">Admin Panel</button>
       </li>
     </ul>
     <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button> 
   </nav>
 
-  <div class="card m-5" style="width:18rem" *ngIf="userDetails">
+  <div class="card m-5" style="width:18rem" *ngIf="userDetails$ | async as userDetails">
   <ul class="list-group">
-    <li class="list-group-item"><strong>Username:</strong>{{userDetails.userName}} </li>   
-    <li class="list-group-item"><strong>Fullname:</strong>{{userDetails.fullName}} </li>   
-    <li class="list-group-item"><strong>Email:</strong>{{userDetails.email}} </li>   
+    <li class="list-group-item"><strong>Username: </strong>{{userDetails.userName}} </li>   
+    <li class="list-group-item"><strong>Fullname: </strong>{{userDetails.fullName}} </li>   
+    <li class="list-group-item"><strong>Email: </strong>{{userDetails.email}} </li>   
   </ul>
   </div>

@@ -7,17 +7,34 @@ import { Router } from '@angular/router';
   styles: []
 })
 export class HomeComponent implements OnInit {
+isAuthenticated:boolean;
 
   constructor(private router:Router) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if(localStorage.getItem('token')!=null){
+      return this.isAuthenticated=true;
+    }
+    else  
+    return this.isAuthenticated=false;
+  }
 
-onCreateMotocycle(){
-this.router.navigate(['/motocycle/adding']); //logic for Guard auth!
-}
-  
+
 onLogin(){
 localStorage.removeItem('token');
 this.router.navigate(['/user/login']); 
 }
+
+onLogout(){
+  localStorage.removeItem('token');
+  this.isAuthenticated=false;
+  this.router.navigate(['/home']); 
+  }
+
+  onProfileUser(){
+    this.router.navigate(['/user-profile']); 
+  }  
 }
+
+
+

@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200126141747_AddMotocyclesToDatabase.cs" />
+    <Compile Remove="Migrations\20200126141747_AddMotocyclesToDatabase.Designer.cs" />
+    <Compile Remove="Migrations\20200127065926_MySecondMigration.cs" />
+    <Compile Remove="Migrations\20200127065926_MySecondMigration.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.1" />

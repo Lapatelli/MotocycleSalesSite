@@ -1,17 +1,35 @@
-<nav class="navbar navbar-light" style="background-color: #1b9859;">
-    <a class="navbar-brand text-white">Buy Moto - Be Happy!</a>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <button class="btn btn-outline-light my-2 my-sm-0" (click)="onCreateMotocycle()">Add Motocycle</button>
-      </li>
-    </ul>
-    <button class="btn btn-outline-light my-2 my-sm-0" (click)="onLogout()">Logout</button> 
-  </nav>
-
-  <div class="card m-5" style="width:18rem" *ngIf="userDetails">
-  <ul class="list-group">
-    <li class="list-group-item"><strong>Username:</strong></li>   
-    <li class="list-group-item"><strong>Fullname:</strong></li>   
-    <li class="list-group-item"><strong>Email:</strong></li>   
-  </ul>
+<form [formGroup]="service.formModel" autocomplete="off" (submit)="onSubmit()">
+  <div class="form-group required">
+    <label>Id</label>
+    <input type="number" class="form-control" formControlName="Id">
+</div>
+  <div class="form-group required">
+      <label>Name</label>
+      <input class="form-control" formControlName="Name">
   </div>
+  <div class="form-group">
+    <label>Description</label>
+    <input class="form-control" formControlName="Description">
+</div>
+  <div class="form-group">
+      <label>Year</label>
+      <input type="number" class="form-control" formControlName="Year">
+  </div>
+  <div class="form-group">
+      <label>Volume</label>
+      <input type="number" class="form-control" formControlName="Volume">
+  </div>
+  <div class="form-group">
+    <label>Cost</label>
+    <input type="number" class="form-control" formControlName="Cost">
+</div>
+<div class="form-group">
+  <label>Type</label>
+  <input type="number" class="form-control" formControlName="Type">
+</div>
+  <div class="form-row">
+      <div class="form-group col-md-8 offset-md-2">
+          <button type="submit" class="btn btn-lg btn-block">Create</button> 
+      </div>
+  </div>
+</form> 

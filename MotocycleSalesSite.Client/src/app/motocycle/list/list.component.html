@@ -1,1 +1,15 @@
-<p>list works!</p>
+<h1></h1>
+<div class="card-columns">
+  <div class="card bg-light mb-3" *ngFor="let motoCycle of motolist$ | async">
+      <div class="card-header" (click)="onOpenDescription()"><strong>Name: </strong>{{motoCycle.name}}</div>    
+      <div class="card-body">
+        <h5 class="card-title"><strong>Cost: </strong>{{motoCycle.cost}}<strong> BYN</strong> </h5>
+        <p class="card-text"><strong>Year: </strong>{{motoCycle.year}}</p>
+        <p class="card-text"><strong>Type: </strong>{{motoCycle.type}}</p>
+        <p class="card-text"><strong>Volume: </strong>{{motoCycle.volume}}</p>
+        <div class="card-body text-right">
+        <button class="btn btn-secondary" (click)="onDescribe(motoCycle.id)">More</button>
+      </div>
+      </div>
+  </div>
+</div>

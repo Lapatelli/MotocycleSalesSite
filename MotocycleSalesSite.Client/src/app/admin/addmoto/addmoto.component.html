@@ -1,0 +1,46 @@
+<nav class="navbar navbar-light" style="background-color: #5c5c8a;">
+  <a class="navbar-brand mb-0 h1 text-white" href="#">mS</a>
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+      <button class="btn btn-outline-light" (click)="onGotoAdminPanel()">Admin Panel</button>
+    </li>
+  </ul>
+  <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button> 
+</nav>
+
+<h4 style="text-align:center; color:#5c5c8a;">Fill in the form for so as to create new moto advertisement!</h4>
+<form [formGroup]="service.formModel" autocomplete="off" (submit)="onCreate()">
+    <div class="form-row">
+      <!-- <div class="form-group col-md-6">
+        <label style="color:#5c5c8a;">Id</label>
+        <input type="number" class="form-control" formControlName="Id">
+      </div> -->
+      <div class="form-group col-md-6">
+        <label style="color:#5c5c8a;">Name</label>
+        <input class="form-control" formControlName="Name">
+      </div>
+    </div>
+    <div class="form-group">
+      <label style="color:#5c5c8a;">Description</label>
+      <input class="form-control" formControlName="Description">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label style="color:#5c5c8a;">Year</label>
+        <input type="number" class="form-control" formControlName="Year">
+      </div>
+      <div class="form-group col-md-3">
+        <label style="color:#5c5c8a;">Volume</label>
+        <input type="number" class="form-control" formControlName="Volume">
+      </div>
+      <div class="form-group col-md-3">
+        <label style="color:#5c5c8a;">Cost</label>
+        <input type="number" class="form-control" formControlName="Cost">
+      </div>
+      <div class="form-group col-md-3">
+        <label style="color:#5c5c8a;">Type</label>
+        <input type="number" class="form-control" formControlName="Type">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-lg">Create</button>
+  </form>

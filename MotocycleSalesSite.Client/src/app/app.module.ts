@@ -18,6 +18,9 @@ import { ListComponent } from './motocycle/list/list.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { MotocycleComponent } from './motocycle/motocycle.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { DescriptionComponent } from './motocycle/description/description.component';
+import { AdminComponent } from './admin/admin.component';
+import { AddmotoComponent } from './admin/addmoto/addmoto.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     ListComponent,
     ForbiddenComponent,
     MotocycleComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    DescriptionComponent,
+    AdminComponent,
+    AddmotoComponent
   ],
   imports: [
     BrowserModule,
