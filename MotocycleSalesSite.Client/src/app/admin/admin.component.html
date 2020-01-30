@@ -1,17 +1,4 @@
-<nav class="navbar navbar-light" style="background-color: #5c5c8a;">
-    <a class="navbar-brand mb-0 h1 text-white" href="#">mS</a>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <button class="btn btn-outline-light" (click)="onGotoAdminPanel()">Admin Panel</button>
-      </li>
-    </ul>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <button class="btn btn-outline-light" (click)="onCreateMotocycle()">Create Adv</button>
-      </li>
-    </ul>
-    <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button> 
-  </nav>
+<app-header></app-header>
 
   <table class="table table-striped">
     <thead>
@@ -37,7 +24,7 @@
             <td><button type="button" class="btn btn-warning" (click)="onEditMotoAdvert(motoCycle.id)">Edit</button></td>
             <td><button type="button" class="btn btn-danger" (click)="onDeleteMotoAdvert(motoCycle.id)">Delete</button></td>
         </tr>
-        <tr [formGroup]="service.formModel" autocomplete="off" *ngIf="show && MotoCycleId===motoCycle.id">
+        <tr [formGroup]="editMotoFormModel" autocomplete="off" *ngIf="show && MotoCycleId===motoCycle.id">
           <td>
           <div class="form">
           <input type="number" class="form-control" formControlName="Id">

@@ -1,5 +1,5 @@
+<app-header></app-header>
 <div class="card m-5" style="width:80rem" *ngIf="motoCycleForDescribe$ | async as motoCycleForDescribe">
-  <!-- *ngIf="motoDescription$ | async as motoDescription" -->
   <ul class="list-group">
     <li class="list-group-item"><strong>Name: </strong>{{motoCycleForDescribe.name}} </li>   
     <li class="list-group-item"><strong>Description: </strong>{{motoCycleForDescribe.description}} </li>   

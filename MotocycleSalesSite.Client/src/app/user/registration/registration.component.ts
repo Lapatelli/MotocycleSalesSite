@@ -1,45 +1,77 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/shared/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styles: []
 })
+
 export class RegistrationComponent implements OnInit {
 
-  constructor(public service:UserService,private toastr:ToastrService) { }
+  public newUserFormModel = this.fb.group({
+    UserName: ['', Validators.required],
+    Email: ['', Validators.email],
+    FullName: [''],
+    Passwords: this.fb.group({
+      Password: ['', [Validators.required, Validators.minLength(4)]],
+      ConfirmPassword: ['', Validators.required],
+    },
+      {validator : this.comparePasswords }
+      )
+  });
+
+  constructor(public service: UserService, private toastr: ToastrService, private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.service.formModel.reset();
+    this.newUserFormModel.reset();
   }
 
-  onSubmit(){
-    this.service.register().subscribe(
-      (res:any)=>{
-        if(res.succeeded){
-          this.service.formModel.reset();
-          console.log('ok');
-          this.toastr.success('New user created!','Registration successful.');
-        }
-        else{
-          res.errors.forEach(element => {         
-            switch (element.code){
-              case 'DuplicateUserName':
-                this.toastr.error('User is already taken','Registration failed!');
-                //Username is already taken
-                break;
+  public comparePasswords(fb: FormGroup): void {
+    const confirmPswrdCtrl = fb.get('ConfirmPassword');
+    if (confirmPswrdCtrl.errors == null || 'passwordMissmatch' in confirmPswrdCtrl.errors) {
+      if (fb.get('Password').value !== confirmPswrdCtrl.value) {
+        confirmPswrdCtrl.setErrors({passwordMismatch: true});
+      }
+      else {
+        confirmPswrdCtrl.setErrors(null);
+      }
+    }
+  }
 
-              default:
-                this.toastr.error(element.description,'Registration failed!');
-                //Registration is failed
+  public onSubmit(): void {
+
+    const newUser = {
+      UserName: this.newUserFormModel.value.UserName,
+      Email: this.newUserFormModel.value.Email,
+      FullName: this.newUserFormModel.value.FullName,
+      Password: this.newUserFormModel.value.Passwords.Password,
+    };
+
+    this.service.register(newUser).subscribe(
+      (res: any) => {
+        if (res.succeeded) {
+          this.newUserFormModel.reset();
+          this.toastr.success('New user created!', 'Registration successful.');
+        }
+        else {
+          res.errors.forEach(element => {
+            switch (element.code) {
+              case 'DuplicateUserName': {
+                this.toastr.error('User is already taken', 'Registration failed!');
                 break;
-            }    
+              }
+              default: {
+                this.toastr.error(element.description, 'Registration failed!');
+                break;
+              }
+            }
           });
         }
       },
-      err=>{
+      err => {
         console.log(err);
       }
     );

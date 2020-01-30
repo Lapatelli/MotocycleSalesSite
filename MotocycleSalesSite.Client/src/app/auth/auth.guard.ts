@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, RouterModule, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { CanActivate, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { UserService } from '../shared/user.service';
 
 @Injectable({
@@ -8,25 +7,27 @@ import { UserService } from '../shared/user.service';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private router: Router, private service : UserService) {
-  }
+  constructor(private router: Router, private service: UserService) { }
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): boolean {
-      if(localStorage.getItem('token')!=null){
-        let roles=next.data['permittedRoles']as Array<string>;
-        if(roles){
-          if(this.service.roleMatch(roles)) return true;
-          else{
-            this.router.navigate(['/forbidden']);
-            return false;
-          }
+  canActivate(next: ActivatedRouteSnapshot): boolean {
+    if (localStorage.getItem('token') != null) {
+      const roles = next.data['permittedRoles'] as Array<string>;
+      if (roles) {
+        if (this.service.roleMatch(roles)) {
+          return true;
         }
+        else {
+          this.router.navigate(['/forbidden']);
+          return false;
+        }
+      }
+      else {
         return true;
       }
-    else
-    this.router.navigate(['/home']); // /user/login
-    return false;
-  }  
+    }
+    else {
+      this.router.navigate(['/home']);
+      return false;
+    }
+  }
 }

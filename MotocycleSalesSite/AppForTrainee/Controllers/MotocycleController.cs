@@ -15,18 +15,10 @@ namespace AppForTrainee.Controllers
     {
         private readonly UserDbContext _db;
 
-
         public MotocycleController(UserDbContext db)
         {
             _db = db;
         }
-
-        //[HttpGet("MotoList")]
-        //[Authorize(Roles = "Admin")]
-        //public IActionResult GetMotoList()
-        //{
-        //    return Ok();
-        //}
 
         [HttpPost("Create")]
         [Authorize(Roles = "Admin")]
@@ -56,7 +48,7 @@ namespace AppForTrainee.Controllers
             return Ok(motocycle);
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

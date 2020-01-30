@@ -1,19 +1,4 @@
-<nav class="navbar navbar-light" style="background-color: #5c5c8a;">
-    <a class="navbar-brand mb-0 h1 text-white" href="/home">mS</a>
-    <ul class="navbar-nav mr-auto" [hidden]="!isAuthenticated">
-        <li class="nav-item">
-          <button class="btn btn btn-light my-2 my-sm-0" (click)="onProfileUser()">Profile</button>
-        </li>
-      </ul>      
-    <div [hidden]="isAuthenticated">
-      <button class="btn btn-outline-light my-2 my-sm-0" (click)="onLogin()">Login</button>
-  </div>
-  <div [hidden]="!isAuthenticated">
-      <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button>
-  </div>
-  </nav>
-
-
-  <app-list></app-list>
+<app-header></app-header>
+<app-list></app-list>
 
   

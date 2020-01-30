@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/shared/user.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -10,29 +10,34 @@ import { ToastrService } from 'ngx-toastr';
   styles: []
 })
 export class LoginComponent implements OnInit {
-formModel={
-  Username:'',
-  Password:''
-}
-  constructor(private service:UserService,private router:Router, private toastr:ToastrService) { }
+
+  public loginUserFormModel = this.fb.group({
+    Username: [''],
+    Password: [''],
+    });
+
+  constructor(private service: UserService, private router: Router, private toastr: ToastrService, private fb: FormBuilder) { }
 
   ngOnInit() {
-    if(localStorage.getItem('token')!=null)
-    this.router.navigateByUrl('/home'); //if will be more pages, need smth to add???
+    if (localStorage.getItem('token') != null) {
+    this.router.navigateByUrl('/home');
+    }
   }
 
-  onSubmit( form:NgForm){
-this.service.login(form.value).subscribe(
-  (res:any)=>{
-    localStorage.setItem('token',res.token);
-    this.router.navigateByUrl('/home');
-  },
-  err=>{
-    if(err.status==400)
-    this.toastr.error('Incorrect username or password!','Authentication failed.');
-    else
-    console.log(err);
-  }
-);
+  public onSubmit(): void {
+    this.service.login(this.loginUserFormModel.value).subscribe(
+      (res: any) => {
+        localStorage.setItem('token', res.token);
+        this.router.navigateByUrl('/home');
+      },
+      err => {
+        if (err.status === 400) {
+          this.toastr.error('Incorrect username or password!', 'Authentication failed.');
+        }
+        else {
+          console.log(err);
+        }
+      }
+    );
   }
 }

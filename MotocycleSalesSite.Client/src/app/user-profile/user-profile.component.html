@@ -1,13 +1,4 @@
-<nav class="navbar navbar-light" style="background-color: #5c5c8a;">
-    <a class="navbar-brand mb-0 h1 text-white" href="#">mS</a>
-    <ul class="navbar-nav mr-auto" [hidden]="!isAdminAuthenticated">
-      <li class="nav-item">
-        <button class="btn btn-outline-light" (click)="onGotoAdminPanel()">Admin Panel</button>
-      </li>
-    </ul>
-    <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button> 
-  </nav>
-
+<app-header></app-header>
   <div class="card m-5" style="width:18rem" *ngIf="userDetails$ | async as userDetails">
   <ul class="list-group">
     <li class="list-group-item"><strong>Username: </strong>{{userDetails.userName}} </li>   

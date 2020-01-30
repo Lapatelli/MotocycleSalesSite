@@ -5,33 +5,29 @@ import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Injectable()
-export class AuthInterceptor implements HttpInterceptor{
+export class AuthInterceptor implements HttpInterceptor {
 
-    constructor(private router:Router) {        
-    }
+    constructor(private router: Router) {}
 
-    intercept(req: HttpRequest<any>,next: HttpHandler): Observable<HttpEvent<any>>{
-        if(localStorage.getItem('token')!=null){
-            const clonedReq=req.clone({
-                headers: req.headers.set('Authorization','Bearer '+ localStorage.getItem('token'))
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        if (localStorage.getItem('token') != null) {
+            const clonedReq = req.clone({
+                headers: req.headers.set('Authorization', 'Bearer ' + localStorage.getItem('token'))
             });
             return next.handle(clonedReq).pipe(
                 tap(
-                    succ=>{},
-                    err=>{
-                        if(err.status==401){
-                        localStorage.removeItem('token');
-                        this.router.navigateByUrl('/user/login');
+                    succ => {},
+                    err => {
+                        if (err.status === 401) {
+                            localStorage.removeItem('token');
+                            this.router.navigateByUrl('/user/login');
                         }
-                        else if(err.status==403){
-                        this.router.navigateByUrl('/forbidden');    
-                        }
-                        
                     }
                 )
-            )
+            );
         }
-        else
+        else {
         return next.handle(req.clone());
+        }
     }
 }

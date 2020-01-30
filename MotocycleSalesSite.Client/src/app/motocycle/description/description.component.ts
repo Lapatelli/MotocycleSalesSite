@@ -11,24 +11,16 @@ import { Observable } from 'rxjs';
 })
 export class DescriptionComponent implements OnInit {
 
-id:number;
-motoCycleForDescribe$:Observable<Motocycles>;
-// @Input()
-// motoDescription$: Observable<Motocycles>;
+  public id: number;
+  public motoCycleForDescribe$: Observable<Motocycles>;
 
-  constructor(private router:Router, private service:MotocycleService, private activateRoute: ActivatedRoute) {
+
+  constructor(private router: Router, private service: MotocycleService, private activateRoute: ActivatedRoute) {
     this.id = activateRoute.snapshot.params['id'];
     console.log(this.id);
-   }
-
-  ngOnInit() {
-    this.motoCycleForDescribe$=this.service.getMotocycleDescription(this.id);
-    console.log('go');
-
   }
 
-  onLogout(){
-    localStorage.removeItem('token');
-    this.router.navigate(['/user/login']);
-    } 
+  ngOnInit() {
+    this.motoCycleForDescribe$ = this.service.getMotocycleDescription(this.id);
+  }
 }
