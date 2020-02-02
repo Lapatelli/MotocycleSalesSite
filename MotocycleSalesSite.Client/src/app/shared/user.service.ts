@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import {HttpClient, HttpHandler, HttpHeaders} from '@angular/common/http';
+import {HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserProfile } from '../user-profile/user-profile';
 import { URLs } from './URLs';
@@ -10,7 +9,7 @@ import { URLs } from './URLs';
 })
 export class UserService {
 
-  constructor(private fb: FormBuilder, private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   public register(newUser): Observable<any> {
     return this.http.post(URLs.UserUrl + 'Register', newUser);

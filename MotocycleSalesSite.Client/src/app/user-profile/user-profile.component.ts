@@ -13,9 +13,9 @@ export class UserProfileComponent implements OnInit {
 
   public userDetails$: Observable<UserProfile>;
 
-  constructor(private router: Router, private service: UserService) { }
+  constructor(private service: UserService) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.userDetails$ = this.service.getUserProfile();
   }
 }

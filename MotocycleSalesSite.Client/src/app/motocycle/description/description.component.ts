@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {MotocycleService} from 'src/app/shared/motocycle.service';
-import { Motocycles } from '../motocycle';
+import { Motocycle } from '../motocycle';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -12,15 +12,12 @@ import { Observable } from 'rxjs';
 export class DescriptionComponent implements OnInit {
 
   public id: number;
-  public motoCycleForDescribe$: Observable<Motocycles>;
+  public motoCycleForDescribe$: Observable<Motocycle>;
 
+  constructor(private service: MotocycleService, private activateRoute: ActivatedRoute) {}
 
-  constructor(private router: Router, private service: MotocycleService, private activateRoute: ActivatedRoute) {
-    this.id = activateRoute.snapshot.params['id'];
-    console.log(this.id);
-  }
-
-  ngOnInit() {
+  public ngOnInit(): void {
+    this.id = this.activateRoute.snapshot.params['id'];
     this.motoCycleForDescribe$ = this.service.getMotocycleDescription(this.id);
   }
 }

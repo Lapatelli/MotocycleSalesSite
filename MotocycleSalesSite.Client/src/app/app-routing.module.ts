@@ -5,14 +5,12 @@ import { RegistrationComponent } from './user/registration/registration.componen
 import { LoginComponent } from './user/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './auth/auth.guard';
-import { MotocycleComponent } from './motocycle/motocycle.component';
 import { ListComponent } from './motocycle/list/list.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DescriptionComponent } from './motocycle/description/description.component';
 import {AdminComponent} from './admin/admin.component';
 import {AddmotoComponent} from './admin/addmoto/addmoto.component';
 import { HeaderComponent } from './home/header/header.component';
-
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -23,10 +21,7 @@ const routes: Routes = [
       {path: 'login', component: LoginComponent}
     ]},
   {path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuard]},
-  {path: 'motocycle', component: MotocycleComponent,
-    children: [
-      {path: 'list', component: ListComponent},
-    ]},
+  {path: 'list', component: ListComponent},
   {path: 'motocycle/description/:id', component: DescriptionComponent, canActivate: [AuthGuard], data: {permittedRoles: ['User', 'Admin']}},
   {path: 'admin', component: AdminComponent, canActivate: [AuthGuard], data: {permittedRoles: ['Admin']}},
   {path: 'addmoto', component: AddmotoComponent, canActivate: [AuthGuard], data: {permittedRoles: ['Admin']}},

@@ -14,7 +14,6 @@ import { LoginComponent } from './user/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { ListComponent } from './motocycle/list/list.component';
-import { MotocycleComponent } from './motocycle/motocycle.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DescriptionComponent } from './motocycle/description/description.component';
 import { AdminComponent } from './admin/admin.component';
@@ -29,7 +28,6 @@ import { HeaderComponent } from './home/header/header.component';
     LoginComponent,
     HomeComponent,
     ListComponent,
-    MotocycleComponent,
     UserProfileComponent,
     DescriptionComponent,
     AdminComponent,

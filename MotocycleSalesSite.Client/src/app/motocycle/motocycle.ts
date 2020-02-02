@@ -1,5 +1,4 @@
-export class Motocycles {
-
+export class Motocycle {
   public Id: number;
   public Name: string;
   public Description: string;

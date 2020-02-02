@@ -11,18 +11,20 @@ import { FormBuilder } from '@angular/forms';
 })
 export class AddmotoComponent implements OnInit {
 
-  public newMotoFormModel = this.fb.group({
-    Name: [''],
-    Description: [''],
-    Year: [''],
-    Volume: [''],
-    Cost: [''],
-    Type: ['']
-  });
+  public newMotoFormModel: any;
 
   constructor(private router: Router, private service: MotocycleService, private toastr: ToastrService, private fb: FormBuilder) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
+    this.newMotoFormModel = this.fb.group({
+      Name: [''],
+      Description: [''],
+      Year: [''],
+      Volume: [''],
+      Cost: [''],
+      Type: ['']
+    });
+
     this.newMotoFormModel.reset();
   }
 
@@ -33,9 +35,9 @@ export class AddmotoComponent implements OnInit {
           console.log('ok');
         }
       },
-      err => {
-        console.log(err);
-      });
+      err =>
+        console.log(err)
+      );
     this.newMotoFormModel.reset();
     this.toastr.success('New advert created!', 'Registration successful.');
   }

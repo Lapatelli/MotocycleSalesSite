@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { UserService } from 'src/app/shared/user.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -11,14 +11,16 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
 
-  public loginUserFormModel = this.fb.group({
-    Username: [''],
-    Password: [''],
-    });
+  public loginUserFormModel: any;
 
   constructor(private service: UserService, private router: Router, private toastr: ToastrService, private fb: FormBuilder) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
+    this.loginUserFormModel = this.fb.group({
+      Username: [''],
+      Password: [''],
+    });
+
     if (localStorage.getItem('token') != null) {
     this.router.navigateByUrl('/home');
     }

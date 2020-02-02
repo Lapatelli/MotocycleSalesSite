@@ -1,6 +1,6 @@
 import { Component, OnInit, } from '@angular/core';
 import { MotocycleService } from '../shared/motocycle.service';
-import { Motocycles } from '../motocycle/motocycle';
+import { Motocycle } from '../motocycle/motocycle';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder } from '@angular/forms';
@@ -10,47 +10,41 @@ import { FormBuilder } from '@angular/forms';
   templateUrl: './admin.component.html',
   styles: []
 })
-
 export class AdminComponent implements OnInit {
 
-  public motoCycle: Motocycles;
-  public motolist$: Observable<Motocycles[]>;
+  public motoCycle: Motocycle;
+  public motolist$: Observable<Motocycle[]>;
   public MotoCycleId: number;
   public show = false;
-
-  public editMotoFormModel = this.fb.group({
-    Id: [''],
-    Name: [''],
-    Year: [''],
-    Volume: [''],
-    Cost: [''],
-    Type: ['']
-  });
+  public editMotoFormModel: any;
 
   constructor(private service: MotocycleService, private toastr: ToastrService, private fb: FormBuilder) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
+    this.editMotoFormModel = this.fb.group({
+      Id: [''],
+      Name: [''],
+      Year: [''],
+      Volume: [''],
+      Cost: [''],
+      Type: ['']
+    });
+
     this.motolist$ = this.service.getMotocyclesList();
   }
 
   public onEditMotoAdvert(id: number): void {
     this.MotoCycleId = id;
-    console.log(this.MotoCycleId);
-    if (this.show === false) {
-      this.show = true;
-    }
-    else {
-      this.show = false;
-    }
+
+    this.show = this.show === false;
   }
 
   public onDeleteMotoAdvert(id: number): void {
-    this.service.deleteMotoitem(id).subscribe(res => {
-      this.toastr.error('Advertisement deleted successfully!', 'Delete Moto Advert');
-    },
-    err => {
-      console.log(err);
-    });
+    this.service.deleteMotoitem(id).subscribe(res =>
+      this.toastr.error('Advertisement deleted successfully!', 'Delete Moto Advert'),
+    err =>
+      console.log(err)
+    );
   }
 
   public onUpdate(id: number): void {

@@ -8,36 +8,33 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
   templateUrl: './registration.component.html',
   styles: []
 })
-
 export class RegistrationComponent implements OnInit {
 
-  public newUserFormModel = this.fb.group({
-    UserName: ['', Validators.required],
-    Email: ['', Validators.email],
-    FullName: [''],
-    Passwords: this.fb.group({
-      Password: ['', [Validators.required, Validators.minLength(4)]],
-      ConfirmPassword: ['', Validators.required],
-    },
-      {validator : this.comparePasswords }
-      )
-  });
+  public newUserFormModel: any;
 
   constructor(public service: UserService, private toastr: ToastrService, private fb: FormBuilder) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
+    this.newUserFormModel = this.fb.group({
+      UserName: ['', Validators.required],
+      Email: ['', Validators.email],
+      FullName: [''],
+      Passwords: this.fb.group({
+        Password: ['', [Validators.required, Validators.minLength(4)]],
+        ConfirmPassword: ['', Validators.required],
+      },
+        {validator : this.comparePasswords }
+      )
+    });
+
     this.newUserFormModel.reset();
   }
 
   public comparePasswords(fb: FormGroup): void {
     const confirmPswrdCtrl = fb.get('ConfirmPassword');
     if (confirmPswrdCtrl.errors == null || 'passwordMissmatch' in confirmPswrdCtrl.errors) {
-      if (fb.get('Password').value !== confirmPswrdCtrl.value) {
-        confirmPswrdCtrl.setErrors({passwordMismatch: true});
-      }
-      else {
-        confirmPswrdCtrl.setErrors(null);
-      }
+      const error = fb.get('Password').value === confirmPswrdCtrl.value ? null : {passwordMismatch: true};
+      confirmPswrdCtrl.setErrors(error);
     }
   }
 
@@ -71,9 +68,7 @@ export class RegistrationComponent implements OnInit {
           });
         }
       },
-      err => {
-        console.log(err);
-      }
+      err => console.log(err)
     );
   }
 }

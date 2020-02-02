@@ -9,22 +9,22 @@ import { UserService } from 'src/app/shared/user.service';
 })
 export class HeaderComponent implements OnInit {
 
-  public isAuthenticated: boolean;
+  public isUserAuthenticated: boolean;
   public isAdminAuthenticated: boolean;
 
   constructor(private router: Router, private service: UserService) { }
 
-  ngOnInit() {
+  public ngOnInit(): boolean {
     if (localStorage.getItem('token') != null) {
       if (this.service.roleMatch(['Admin'])) {
         return this.isAdminAuthenticated = true;
       }
       else {
-        return this.isAuthenticated = true;
+        return this.isUserAuthenticated = true;
       }
     }
     else {
-      return this.isAuthenticated = false;
+      return this.isUserAuthenticated = false;
     }
   }
 
@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
 
   public onLogout(): void {
     localStorage.removeItem('token');
-    this.isAuthenticated = false;
+    this.isUserAuthenticated = false;
     this.isAdminAuthenticated = false;
     this.router.navigate(['/home']);
   }
